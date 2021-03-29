@@ -1,0 +1,18 @@
+i18n_title: browser_extensions.reporttitle
+not_null_column: browser
+table:
+  - column: machine.computer_name
+    i18n_header: listing.computername
+    formatter: clientDetail
+    tab_link: browser_extensions-tab
+  - column: reportdata.serial_number
+    i18n_header: serial
+  - {i18n_header: browser_extensions.name, column: browser_extensions.name}
+  - {i18n_header: browser_extensions.version, column: browser_extensions.version}
+  - {i18n_header: browser_extensions.extension_id, column: browser_extensions.extension_id}
+  - {i18n_header: browser_extensions.user, column: browser_extensions.user}
+  - {i18n_header: browser_extensions.browser, column: browser_extensions.browser}
+  - {i18n_header: browser_extensions.date_installed, column: browser_extensions.date_installed, formatter: timestampToMoment}
+  - {i18n_header: browser_extensions.developer, column: browser_extensions.developer}
+  - {i18n_header: browser_extensions.enabled, column: browser_extensions.enabled, formatter: binaryYesNo}
+  - {i18n_header: browser_extensions.description, column: browser_extensions.description}

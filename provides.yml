@@ -1,0 +1,10 @@
+client_tabs:
+    browser_extensions-tab:
+        view: browser_extensions_tab
+        i18n: browser_extensions.browser_extensions
+        badge: browser_extensions-cnt
+
+listings:
+    browser_extensions:
+        view: browser_extensions_listing
+        i18n: browser_extensions.browser_extensions

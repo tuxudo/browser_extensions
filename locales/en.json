@@ -1,0 +1,13 @@
+{
+    "browser_extensions": "Browser Extensions",
+    "reporttitle": "Browser Extensions Report",
+    "name": "Name",
+    "extension_id": "Extension ID",
+    "version": "Version",
+    "description": "Description",
+    "browser": "Browser",
+    "date_installed": "Install Date",
+    "developer": "Developer",
+    "enabled": "Enabled",
+    "user": "User"
+}
