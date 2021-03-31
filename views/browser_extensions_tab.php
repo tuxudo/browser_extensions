@@ -74,6 +74,18 @@ $(document).on('appReady', function(){
                              .addClass('table table-striped table-condensed')
                              .append($('<tbody>')
                                  .append(rows))))
+
+                } else if (d.browser == "Microsoft Edge"){
+                    $('#browser_extensions-tab')
+                    .append($('<h4>')
+                         .append($('<i>')
+                             .addClass('fa fa-internet-explorer'))
+                         .append(' '+d.name))
+                    .append($('<div style="max-width:650px;">')
+                         .append($('<table>')
+                             .addClass('table table-striped table-condensed')
+                             .append($('<tbody>')
+                                 .append(rows))))
                 }
             })
         }

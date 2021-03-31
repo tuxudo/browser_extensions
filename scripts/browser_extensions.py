@@ -30,7 +30,7 @@ def get_users():
 
     return users
 
-def process_chrome(chrome_extension, user):
+def process_chrome(chrome_extension, user, browser):
 
     extension_manifest = json.loads(open(chrome_extension, 'r').read().strip())
     
@@ -68,7 +68,7 @@ def process_chrome(chrome_extension, user):
     extension_info['extension_id'] = path_dict[-3:][0]
     extension_info['user'] = user
     extension_info['date_installed'] = str(int(os.path.getmtime(chrome_extension)))
-    extension_info['browser'] = "Google Chrome"
+    extension_info['browser'] = browser
     return extension_info
 
 def process_firefox(firefox_extension, user):
@@ -115,7 +115,13 @@ def process_browsers(users):
         chrome_extension_path = user+"/Library/Application Support/Google/Chrome/Default/Extensions/"
         if os.path.isdir(chrome_extension_path):
             for chrome_extension in glob.glob(chrome_extension_path+'*/*/manifest.json'):
-                out.append(process_chrome(chrome_extension, user.replace("/Users/","")))
+                out.append(process_chrome(chrome_extension, user.replace("/Users/",""), "Google Chrome"))
+
+        # Check for Edge extensions
+        edge_extension_path = user+"/Library/Application Support/Microsoft Edge/Default/Extensions/"
+        if os.path.isdir(edge_extension_path):
+            for edge_extension in glob.glob(edge_extension_path+'*/*/manifest.json'):
+                out.append(process_chrome(edge_extension, user.replace("/Users/",""), "Microsoft Edge"))
 
         # Check for Firefox extensions
         firefox_path = user+"/Library/Application Support/Firefox/installs.ini"
