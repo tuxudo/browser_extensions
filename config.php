@@ -24,6 +24,15 @@ return [
     'formautofill@mozilla.org',
     'screenshots@mozilla.org',
     'reset-search-defaults@mozilla.com',
+    'pictureinpicture@mozilla.org',
+    'firefox-alpenglow@mozilla.org',
+    'addons-search-detection@mozilla.com',
+    '2022orange-colorway@mozilla.org',
+    '2022red-colorway@mozilla.org',
+    '2022yellow-colorway@mozilla.org',
+    '2022green-colorway@mozilla.org',
+    '2022purple-colorway@mozilla.org',
+    '2022blue-colorway@mozilla.org',
     ]),
     
 /*
