@@ -1,4 +1,4 @@
-#!/usr/local/munkireport/munkireport-python2
+#!/usr/local/munki/munki-python
 
 import os
 import subprocess
@@ -23,7 +23,7 @@ def get_users():
 
     users = []
 
-    for user in output.split('\n'):
+    for user in output.decode().split('\n'):
         if 'NFSHomeDirectory' in user and '/var/empty' not in user:
             userpath = user.replace("NFSHomeDirectory: ", "")
             users.append(user.replace("NFSHomeDirectory: ", ""))
@@ -44,7 +44,7 @@ def process_chrome(chrome_extension, user, browser):
             try:
                 locale_file = open(chrome_extension.replace("manifest.json", "_locales/"+extension_manifest['default_locale']+"/messages.json"), 'r')
                 extension_localization = json.loads(locale_file.read().strip())
-                extension_localization_lower = {k.lower():v for k,v in extension_localization.items()}
+                extension_localization_lower = {k.lower():v for k,v in list(extension_localization.items())}
                 local_name = extension_manifest['description'].replace("__MSG_","").replace("__","").lower()
                 extension_info['description'] = extension_localization_lower[local_name]["message"]
             except:
@@ -56,7 +56,7 @@ def process_chrome(chrome_extension, user, browser):
             try:
                 locale_file = open(chrome_extension.replace("manifest.json", "_locales/"+extension_manifest['default_locale']+"/messages.json"), 'r')
                 extension_localization = json.loads(locale_file.read().strip())
-                extension_localization_lower = {k.lower():v for k,v in extension_localization.items()}
+                extension_localization_lower = {k.lower():v for k,v in list(extension_localization.items())}
                 local_name = extension_manifest['name'].replace("__MSG_","").replace("__","").lower()
                 extension_info['name'] = extension_localization_lower[local_name]["message"]
             except:
@@ -142,10 +142,6 @@ def process_browsers(users):
 
 def main():
     """Main"""
-
-    # Set the encoding
-    reload(sys)  
-    sys.setdefaultencoding('utf8')
 
     # Get information about the browser extensions
     users = get_users()
