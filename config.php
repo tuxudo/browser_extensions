@@ -33,6 +33,10 @@ return [
     '2022green-colorway@mozilla.org',
     '2022purple-colorway@mozilla.org',
     '2022blue-colorway@mozilla.org',
+    'firefox-alpenglow@mozilla.org',
+    'pictureinpicture@mozilla.org',
+    'proxy-failover@mozilla.com',
+    'addons-search-detection@mozilla.com',
     ]),
     
 /*
