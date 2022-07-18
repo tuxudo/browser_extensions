@@ -124,19 +124,12 @@ def process_browsers(users):
                 out.append(process_chrome(edge_extension, user.replace("/Users/",""), "Microsoft Edge"))
 
         # Check for Firefox extensions
-        firefox_path = user+"/Library/Application Support/Firefox/installs.ini"
-        if os.path.isfile(firefox_path):
-
-            file = open(firefox_path, 'r')
-
-            for line in file.readlines():
-                if re.search('Default=', line, re.I):
-                    firefox_profile = line.replace("Default=","").strip()
-                    firefox_extension_json_path = user+"/Library/Application Support/Firefox/"+firefox_profile+"/extensions.json"
-
-                    firefox_extension_json = json.loads(open(firefox_extension_json_path, 'r').read().strip())
-                    for firefox_extension in firefox_extension_json['addons']:                        
-                        out.append(process_firefox(firefox_extension, user.replace("/Users/","")))
+        firefox_path = user+"/Library/Application Support/Firefox/Profiles/"
+        if os.path.isdir(firefox_path):
+            for firefox_extension_json_path in glob.glob(firefox_path+'*/extensions.json'):
+                firefox_extension_json = json.loads(open(firefox_extension_json_path, 'r').read().strip())
+                for firefox_extension in firefox_extension_json['addons']:                        
+                    out.append(process_firefox(firefox_extension, user.replace("/Users/","")))
 
     return out
 
