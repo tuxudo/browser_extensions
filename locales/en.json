@@ -9,5 +9,6 @@
     "date_installed": "Install Date",
     "developer": "Developer",
     "enabled": "Enabled",
-    "user": "User"
+    "user": "User",
+    "extension_path": "Extension Path"
 }

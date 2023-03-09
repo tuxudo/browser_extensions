@@ -69,9 +69,11 @@ def process_chrome(chrome_extension, user, browser):
     extension_info['user'] = user
     extension_info['date_installed'] = str(int(os.path.getmtime(chrome_extension)))
     extension_info['browser'] = browser
+
+    extension_info['extension_path'] = chrome_extension.replace("manifest.json","")
     return extension_info
 
-def process_firefox(firefox_extension, user):
+def process_firefox(firefox_extension, user, firefox_extension_path):
 
     extension_info = {}
 
@@ -100,6 +102,7 @@ def process_firefox(firefox_extension, user):
 
     extension_info['user'] = user
     extension_info['browser'] = "Firefox"
+    extension_info['extension_path'] = firefox_extension_path.replace("extensions.json","")
 
     return extension_info
 
@@ -129,7 +132,7 @@ def process_browsers(users):
             for firefox_extension_json_path in glob.glob(firefox_path+'*/extensions.json'):
                 firefox_extension_json = json.loads(open(firefox_extension_json_path, 'r').read().strip())
                 for firefox_extension in firefox_extension_json['addons']:                        
-                    out.append(process_firefox(firefox_extension, user.replace("/Users/","")))
+                    out.append(process_firefox(firefox_extension, user.replace("/Users/",""), firefox_extension_json_path))
 
     return out
 

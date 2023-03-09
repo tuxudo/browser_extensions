@@ -17,6 +17,7 @@ class Browser_extensions_model extends Eloquent
 		'developer',
 		'enabled',
 		'user',
+		'extension_path',
     ];
 
     public $timestamps = false;

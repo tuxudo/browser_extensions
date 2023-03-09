@@ -14,13 +14,14 @@ Table Schema
 -----
 
 Database:
-* name - varchar(255) - name of extension
-* extension_id - varchar(255) - extension ID
-* version - varchar(255) - extension version
-* description - text - extension's description
+* name - varchar(255) - Name of extension
+* extension_id - varchar(255) - Extension ID
+* version - varchar(255) - Extension version
+* description - text - Extension's description
 * browser - varchar(255) - Firefox or Google Chrome or Microsoft Edge
-* date_installed - bigint - date extension was updated/installed
-* developer - varchar(255) - name of extension developer, Firefox only
+* date_installed - bigint - Date extension was updated/installed
+* developer - varchar(255) - Name of extension developer, Firefox only
 * enabled - boolean - If extension is enabled, Firefox only
-* user - varchar(255) - user profile that contains extension
+* user - varchar(255) - User profile that contains extension
+* extension_path - text - Path to extension folder
 

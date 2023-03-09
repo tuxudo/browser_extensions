@@ -16,3 +16,4 @@ table:
   - {i18n_header: browser_extensions.developer, column: browser_extensions.developer}
   - {i18n_header: browser_extensions.enabled, column: browser_extensions.enabled, formatter: binaryYesNo}
   - {i18n_header: browser_extensions.description, column: browser_extensions.description}
+  - {i18n_header: browser_extensions.extension_path, column: browser_extensions.extension_path}
