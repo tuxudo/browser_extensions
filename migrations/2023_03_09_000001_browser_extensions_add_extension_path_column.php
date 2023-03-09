@@ -3,7 +3,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-class BrowserExtensionsAddCExtensionPathColumn extends Migration
+class BrowserExtensionsAddExtensionPathColumn extends Migration
 {
     private $tableName = 'browser_extensions';
 
@@ -11,7 +11,7 @@ class BrowserExtensionsAddCExtensionPathColumn extends Migration
     {
         $capsule = new Capsule();
         $capsule::schema()->table($this->tableName, function (Blueprint $table) {
-            $table->string('extension_path')->nullable();
+            $table->text('extension_path')->nullable();
         });
     }
     
