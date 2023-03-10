@@ -139,7 +139,7 @@ def process_browsers(users):
             for firefox_extension_json_path in glob.glob(firefox_path+'*/extensions.json'):
                 firefox_extension_json = json.loads(open(firefox_extension_json_path, 'r').read().strip())
                 for firefox_extension in firefox_extension_json['addons']:
-                    if firefox_extension["path"] is not None and "/Applications/Firefox.app/Contents/Resources/browser/features/" not in firefox_extension["path"]:
+                    if "path" in firefox_extension and firefox_extension["path"] is not None and "/Applications/Firefox.app/Contents/Resources/browser/features/" not in firefox_extension["path"]:
                         out.append(process_firefox(firefox_extension, user.replace("/Users/",""), firefox_extension_json_path))
 
     return out
