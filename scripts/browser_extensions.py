@@ -77,6 +77,8 @@ def process_firefox(firefox_extension, user, firefox_extension_path):
 
     extension_info = {}
 
+    extension_info['extension_path'] = firefox_extension_path
+
     for item in firefox_extension:
         if item == "version":
             extension_info['version'] = firefox_extension[item]
@@ -89,6 +91,12 @@ def process_firefox(firefox_extension, user, firefox_extension_path):
             
         elif item == "id":
             extension_info['extension_id'] = firefox_extension[item]
+
+        elif item == "path":
+            if firefox_extension[item] is None:
+                extension_info['extension_path'] = firefox_extension_path.replace("extensions.json","")
+            else:
+                extension_info['extension_path'] = firefox_extension[item]
             
         elif item == "defaultLocale":
             
@@ -102,7 +110,6 @@ def process_firefox(firefox_extension, user, firefox_extension_path):
 
     extension_info['user'] = user
     extension_info['browser'] = "Firefox"
-    extension_info['extension_path'] = firefox_extension_path.replace("extensions.json","")
 
     return extension_info
 
@@ -131,8 +138,9 @@ def process_browsers(users):
         if os.path.isdir(firefox_path):
             for firefox_extension_json_path in glob.glob(firefox_path+'*/extensions.json'):
                 firefox_extension_json = json.loads(open(firefox_extension_json_path, 'r').read().strip())
-                for firefox_extension in firefox_extension_json['addons']:                        
-                    out.append(process_firefox(firefox_extension, user.replace("/Users/",""), firefox_extension_json_path))
+                for firefox_extension in firefox_extension_json['addons']:
+                    if firefox_extension["path"] is not None and "/Applications/Firefox.app/Contents/Resources/browser/features/" not in firefox_extension["path"]:
+                        out.append(process_firefox(firefox_extension, user.replace("/Users/",""), firefox_extension_json_path))
 
     return out
 
